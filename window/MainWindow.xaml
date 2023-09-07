@@ -1,0 +1,15 @@
+﻿<Window x:Class="TimeCard.window.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TimeCard.window"
+        mc:Ignorable="d"
+        Title="TimeCard" Height="380" Width="600" MinWidth="600" MinHeight="380" MaxWidth="600" MaxHeight="380">
+    <Grid Width="600" HorizontalAlignment="Center" Height="360" MinWidth="600" MinHeight="360" MaxWidth="600" MaxHeight="360">
+        <Button Content="外出" Margin="22,100,22,0" Click="Button_Click" Height="60" VerticalAlignment="Top" FontSize="16"/>
+        <Button Content="出勤" Margin="22,20,22,0" Click="Button_Click" Height="60" VerticalAlignment="Top" FontSize="16"/>
+        <Button Content="戻" Margin="22,180,22,0" Click="Button_Click" Height="60" VerticalAlignment="Top" FontSize="16"/>
+        <Button Content="退勤" Margin="22,260,22,0" Click="Button_Click" Height="60" VerticalAlignment="Top" FontSize="16"/>
+    </Grid>
+</Window>
