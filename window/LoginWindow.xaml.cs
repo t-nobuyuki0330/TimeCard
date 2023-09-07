@@ -23,5 +23,24 @@ namespace TimeCard.window
         {
             InitializeComponent();
         }
+
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            if ( LoginUserNo.Text == "" )
+            {
+                MessageBox.Show( this, "社員番号を入力してください" );
+                return;
+            }
+
+            if ( LoginPassword.Password == "" )
+            {
+                MessageBox.Show( this, "パスワードを入力してください" );
+                return;
+            }
+
+            var main_window = new MainWindow( LoginUserNo.Text );
+            main_window.Show();
+            this.Close();
+        }
     }
 }
