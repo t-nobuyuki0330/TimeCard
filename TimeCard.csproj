@@ -9,7 +9,9 @@
     <Company>nem-lab</Company>
     <Product>nem-lab $(AssemblyName)</Product>
     <Description>作業時間記録のためのタイムカードシステム</Description>
-    <NeutralLanguage>ja</NeutralLanguage>
+    <NeutralLanguage>ja-JP</NeutralLanguage>
+    <Version>1.0-beta</Version>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
