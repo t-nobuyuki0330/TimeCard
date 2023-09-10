@@ -7,11 +7,17 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="window\AdminWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="window\LoginWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="window\AdminWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="window\LoginWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

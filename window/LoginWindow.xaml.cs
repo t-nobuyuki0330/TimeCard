@@ -24,23 +24,52 @@ namespace TimeCard.window
             InitializeComponent();
         }
 
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        private void LoginButton_Click( object sender, RoutedEventArgs e )
         {
-            if ( LoginUserNo.Text == "" )
+            Login();
+        }
+
+        private void Login()
+        {
+            var login_allow = false;
+
+            if ( LoginUserNo.Text == "" || LoginPassword.Password == "" )
             {
-                MessageBox.Show( this, "社員番号を入力してください" );
+                MessageBox.Show( this, "社員番号・パスワードを入力してください" );
                 return;
             }
 
-            if ( LoginPassword.Password == "" )
+            if ( LoginUserNo.Text == "99999" )
             {
-                MessageBox.Show( this, "パスワードを入力してください" );
+                if ( LoginPassword.Password == "admin" )
+                {
+                    var admin_window = new AdminWindow();
+                    admin_window.Show();
+                    login_allow = true;
+                }
+            }
+            else // 仮処理
+            {
+                var main_window = new MainWindow( LoginUserNo.Text );
+                main_window.Show();
+
+                login_allow = true;
+            }
+
+            // ログイン可否処理
+
+            if ( login_allow )
+            {
+
+            }
+            else
+            {
+                MessageBox.Show( this, "社員番号またはパスワードが違います" );
                 return;
             }
 
-            var main_window = new MainWindow( LoginUserNo.Text );
-            main_window.Show();
             this.Close();
         }
+
     }
 }

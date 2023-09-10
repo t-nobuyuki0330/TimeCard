@@ -40,7 +40,6 @@ namespace TimeCard.window
         }
 
         private DispatcherTimer CreateTimer() {
-            // アイドル優先
             var timer = new DispatcherTimer( DispatcherPriority.Normal );
             // 100ミリでインターバル
             timer.Interval = TimeSpan.FromMilliseconds( 100 );
