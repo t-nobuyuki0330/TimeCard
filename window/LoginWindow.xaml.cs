@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TimeCard.utility;
+using TimeCard.info;
 
 namespace TimeCard.window
 {
@@ -19,9 +21,13 @@ namespace TimeCard.window
     /// </summary>
     public partial class LoginWindow : Window
     {
+        private UserInfo AdminInfo;
+
         public LoginWindow()
         {
             InitializeComponent();
+            var load_data = FileUtility.LoadBinaryFile( FileUtility.GetAppDataPath() + "\\info\\admin_info.dat" );
+            AdminInfo = ( UserInfo )load_data.file_data;
         }
 
         private void LoginButton_Click( object sender, RoutedEventArgs e )
@@ -39,11 +45,11 @@ namespace TimeCard.window
                 return;
             }
 
-            if ( LoginUserNo.Text == "99999" )
+            if ( LoginUserNo.Text == AdminInfo.UserNo )
             {
-                if ( LoginPassword.Password == "admin" )
+                if ( Sha256.CreateSHA256( LoginPassword.Password ) == AdminInfo.Password )
                 {
-                    var admin_window = new AdminWindow();
+                    var admin_window = new AdminWindow( AdminInfo );
                     admin_window.Show();
                     login_allow = true;
                 }

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TimeCard.info;
 
 namespace TimeCard.window
 {
@@ -19,7 +20,7 @@ namespace TimeCard.window
     /// </summary>
     public partial class AdminWindow : Window
     {
-        public AdminWindow()
+        public AdminWindow( UserInfo user_info )
         {
             InitializeComponent();
         }

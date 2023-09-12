@@ -10,7 +10,7 @@
     <Product>nem-lab $(AssemblyName)</Product>
     <Description>作業時間記録のためのタイムカードシステム</Description>
     <NeutralLanguage>ja-JP</NeutralLanguage>
-    <Version>1.0-beta</Version>
+    <Version>1.0.0-beta</Version>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
   </PropertyGroup>
 
@@ -18,6 +18,21 @@
     <Folder Include="db\" />
     <Folder Include="controll\" />
     <Folder Include="network\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>
