@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TimeCard.utility;
 using TimeCard.info;
+using TimeCard.controll;
 
 namespace TimeCard.window
 {
@@ -21,13 +22,9 @@ namespace TimeCard.window
     /// </summary>
     public partial class LoginWindow : Window
     {
-        private UserInfo AdminInfo;
-
         public LoginWindow()
         {
             InitializeComponent();
-            var load_data = FileUtility.LoadBinaryFile( FileUtility.GetAppDataPath() + "\\info\\admin_info.dat" );
-            AdminInfo = ( UserInfo )load_data.file_data;
         }
 
         private void LoginButton_Click( object sender, RoutedEventArgs e )
@@ -37,41 +34,47 @@ namespace TimeCard.window
 
         private void Login()
         {
-            var login_allow = false;
-
             if ( LoginUserNo.Text == "" || LoginPassword.Password == "" )
             {
                 MessageBox.Show( this, "社員番号・パスワードを入力してください" );
                 return;
             }
 
-            if ( LoginUserNo.Text == AdminInfo.UserNo )
-            {
-                if ( Sha256.CreateSHA256( LoginPassword.Password ) == AdminInfo.Password )
-                {
-                    var admin_window = new AdminWindow( AdminInfo );
-                    admin_window.Show();
-                    login_allow = true;
-                }
-            }
-            else // 仮処理
-            {
-                var main_window = new MainWindow( LoginUserNo.Text );
-                main_window.Show();
-
-                login_allow = true;
-            }
+            var login_result = LoginControll.LocalCertification ( LoginUserNo.Text, LoginPassword.Password );
 
             // ログイン可否処理
 
-            if ( login_allow )
+            switch ( login_result.error )
             {
+                case LoginControll.L_LOGIN_ERROR.SUCCESS:
 
-            }
-            else
-            {
-                MessageBox.Show( this, "社員番号またはパスワードが違います" );
-                return;
+                    if ( login_result.user_info != null )
+                    {
+                        if ( login_result.admin_mode )
+                        {
+                            var admin_window = new AdminWindow( login_result.user_info );
+                            admin_window.Show();
+                        }
+                        else
+                        {
+                            var stamp_window = new StampWindow( login_result.user_info );
+                            stamp_window.Show();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show( this, "ログイン処理に失敗しました\n再起動してください" );
+                    }
+                    break;
+
+                case LoginControll.L_LOGIN_ERROR.NO_USER:
+                case LoginControll.L_LOGIN_ERROR.MISS_PASS:
+                    MessageBox.Show( this,　"社員番号またはパスワードが違います" );
+                    return;
+
+                case LoginControll.L_LOGIN_ERROR.NO_USERINFO:
+                    MessageBox.Show( this, "ユーザーの登録を行ってください" );
+                    return;
             }
 
             this.Close();

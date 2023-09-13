@@ -23,7 +23,7 @@
     <Page Update="window\LoginWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="window\MainWindow.xaml">
+    <Page Update="window\StampWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

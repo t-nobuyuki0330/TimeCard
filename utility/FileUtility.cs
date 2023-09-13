@@ -213,19 +213,24 @@ namespace TimeCard.utility
 
         #endregion
 
-        public static string GetAppDataPath ()
+        /// <summary>
+        /// アプリケーションデータの保存先を取得
+        /// </summary>
+        /// <returns></returns>
+        public static string GetAppDataPath()
         {
             Assembly asm = Assembly.GetExecutingAssembly();
             T GetCustomAttribute< T >() where T : Attribute => ( T )Attribute.GetCustomAttribute( asm, typeof( T ) );
 
             string asm_name = asm.GetName().Name;
             string company  = GetCustomAttribute< AssemblyCompanyAttribute >().Company;
+
             if ( company.Length == 0 )
             {
                 company = "Default";
             }
-            return Environment.GetFolderPath( Environment.SpecialFolder.CommonApplicationData ) + "\\" + company + "\\" + asm_name;
 
+            return Environment.GetFolderPath( Environment.SpecialFolder.CommonApplicationData ) + "\\" + company + "\\" + asm_name;
         }
     }
 }

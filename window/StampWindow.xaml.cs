@@ -13,25 +13,25 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using TimeCard.info;
 
 namespace TimeCard.window
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class StampWindow : Window
     {
         private DispatcherTimer Timer;
-        private string          UserNo;
-        private string          UserName = "名称未設定";
+        private UserInfo UserInfoData;
 
-        public MainWindow( string user_no )
+        public StampWindow( UserInfo user_info )
         {
             InitializeComponent();
 
-            UserNo = user_no;
-            // ユーザー名取得処理
-            UserNoLabel.Text = UserName;
+            UserInfoData = user_info;
+
+            UserNoLabel.Text = UserInfoData.Name;
 
             // タイマー生成処理
             Timer = CreateTimer();
@@ -53,25 +53,25 @@ namespace TimeCard.window
 
         public void AttendButton_Click( object sender, RoutedEventArgs e )
         {
-            MessageBox.Show( this, DateTime.Now.ToString( "yyy/MM/dd ddd HH:mm:ss" ) + "\n" + UserNo + " : " + UserName + "\n[ 出 ] 打刻しました" );
+            MessageBox.Show( this, DateTime.Now.ToString( "yyy/MM/dd ddd HH:mm:ss" ) + "\n" + UserInfoData.UserNo + " : " + UserInfoData.Name + "\n[ 出 ] 打刻しました" );
             Application.Current.Shutdown();
         }
 
         private void BreakButton_Click( object sender, RoutedEventArgs e )
         {
-            MessageBox.Show( this, DateTime.Now.ToString( "yyy/MM/dd ddd HH:mm:ss") + "\n" + UserNo + " : " + UserName + "\n[ 外 ] 打刻しました");
+            MessageBox.Show( this, DateTime.Now.ToString( "yyy/MM/dd ddd HH:mm:ss") + "\n" + UserInfoData.UserNo + " : " + UserInfoData.Name + "\n[ 外 ] 打刻しました");
             Application.Current.Shutdown();
         }
 
         private void BreakEndButton_Click( object sender, RoutedEventArgs e )
         {
-            MessageBox.Show( this, DateTime.Now.ToString( "yyy/MM/dd ddd HH:mm:ss") + "\n" + UserNo + " : " + UserName + "\n[ 戻 ] 打刻しました");
+            MessageBox.Show( this, DateTime.Now.ToString( "yyy/MM/dd ddd HH:mm:ss") + "\n" + UserInfoData.UserNo + " : " + UserInfoData.Name + "\n[ 戻 ] 打刻しました");
             Application.Current.Shutdown();
         }
 
         private void LeavingButton_Click( object sender, RoutedEventArgs e )
         {
-            MessageBox.Show( this, DateTime.Now.ToString( "yyy/MM/dd ddd HH:mm:ss") + "\n" + UserNo + " : " + UserName + "\n[ 退 ] 打刻しました" );
+            MessageBox.Show( this, DateTime.Now.ToString( "yyy/MM/dd ddd HH:mm:ss") + "\n" + UserInfoData.UserNo + " : " + UserInfoData.Name + "\n[ 退 ] 打刻しました" );
             Application.Current.Shutdown();
         }
     }

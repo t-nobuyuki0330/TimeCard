@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <Folder Include="db\" />
-    <Folder Include="controll\" />
     <Folder Include="network\" />
   </ItemGroup>
 
