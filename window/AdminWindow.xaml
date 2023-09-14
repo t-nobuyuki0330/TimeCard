@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Title="TimeCard" Height="450" Width="800" MaxWidth="800" MaxHeight="450" MinWidth="800" MinHeight="450">
     <Grid>
-        <TextBox x:Name="AdminNoText" Height="25" Margin="22,60,0,0" TextWrapping="Wrap" Text="99999" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" AllowDrop="False"/>
+        <Frame x:Name="AdminWindowFrame" Content="Frame" Margin="152,0,0,0" NavigationUIVisibility="Hidden"/>
+        <StackPanel Margin="0,0,650,0">
+            <Button x:Name="AdminManageButton" Content="管理者" Height="80" Width="130" FontSize="16" Background="White" Click="AdminManageButton_Click"/>
+            <Button x:Name="UserManageButton" Content="ユーザー管理" Height="80" Width="130" FontSize="16" Background="White" Click="UserManageButton_Click"/>
+            <Button x:Name="StampManageButton" Content="出退勤管理" Height="80" Width="130" FontSize="16" Background="White" Click="StampManageButton_Click"/>
+            <Button x:Name="LoginWindowButton" Content="ログイン画面" Height="80" Width="130" FontSize="16" Background="White" Click="LoginWindowButton_Click"/>
+        </StackPanel>
     </Grid>
 </Window>
