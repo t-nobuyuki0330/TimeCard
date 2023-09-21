@@ -15,8 +15,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="db\" />
-    <Folder Include="network\" />
+    <Folder Include="Db\" />
+    <Folder Include="Network\" />
   </ItemGroup>
 
   <ItemGroup>

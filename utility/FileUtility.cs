@@ -11,7 +11,7 @@ using System.Reflection;
 
 #pragma warning disable SYSLIB0011
 
-namespace TimeCard.utility
+namespace TimeCard.Utility
 {
     public class FileUtility
     {

@@ -11,20 +11,23 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using TimeCard.utility;
-using TimeCard.info;
-using TimeCard.controll;
+using TimeCard.Utility;
+using TimeCard.Info;
+using TimeCard.Controller;
 
-namespace TimeCard.window
+namespace TimeCard.Window
 {
     /// <summary>
     /// LoginWindow.xaml の相互作用ロジック
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class LoginWindow : System.Windows.Window
     {
         public LoginWindow()
         {
             InitializeComponent();
+            // 初期管理者ファイル作成のため
+            //UserInfo admin = new UserInfo("99999", Sha256.CreateSHA256("admin12345"));
+            //FileUtility.SaveBinaryFile(admin, InfoUri.AdminInfo);
         }
 
         private void LoginButton_Click( object sender, RoutedEventArgs e )
@@ -40,13 +43,13 @@ namespace TimeCard.window
                 return;
             }
 
-            var login_result = LoginControll.LocalCertification ( LoginUserNo.Text, LoginPassword.Password );
+            var login_result = LoginController.LocalCertification ( LoginUserNo.Text, LoginPassword.Password );
 
             // ログイン可否処理
 
             switch ( login_result.error )
             {
-                case LoginControll.L_LOGIN_ERROR.SUCCESS:
+                case LoginController.L_LOGIN_ERROR.SUCCESS:
 
                     if ( login_result.user_info != null )
                     {
@@ -67,13 +70,16 @@ namespace TimeCard.window
                     }
                     break;
 
-                case LoginControll.L_LOGIN_ERROR.NO_USER:
-                case LoginControll.L_LOGIN_ERROR.MISS_PASS:
+                case LoginController.L_LOGIN_ERROR.NO_USER:
+                case LoginController.L_LOGIN_ERROR.MISS_PASS:
                     MessageBox.Show( this,　"社員番号またはパスワードが違います" );
                     return;
 
-                case LoginControll.L_LOGIN_ERROR.NO_USERINFO:
+                case LoginController.L_LOGIN_ERROR.NO_USERINFO:
                     MessageBox.Show( this, "ユーザーの登録を行ってください" );
+                    return;
+                case LoginController.L_LOGIN_ERROR.BRAKE_INFO:
+                    MessageBox.Show( this, "ユーザー定義ファイルが破損しています" );
                     return;
             }
 

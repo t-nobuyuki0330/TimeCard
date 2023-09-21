@@ -9,39 +9,45 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="window\AdminWindow.xaml.cs">
+    <Compile Update="Window\AdminWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="window\LoginWindow.xaml.cs">
+    <Compile Update="Window\LoginWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="window\page\AdminPage.xaml.cs">
+    <Compile Update="Window\Page\AdminPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="window\page\StampManagePage.xaml.cs">
+    <Compile Update="Window\Page\StampManagePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="window\page\UsersPage.xaml.cs">
+    <Compile Update="Window\Page\UsersPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Window\UserAddWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="window\AdminWindow.xaml">
+    <Page Update="Window\AdminWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="window\LoginWindow.xaml">
+    <Page Update="Window\LoginWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="window\page\AdminPage.xaml">
+    <Page Update="Window\Page\AdminPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="window\page\StampManagePage.xaml">
+    <Page Update="Window\Page\StampManagePage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="window\page\UsersPage.xaml">
+    <Page Update="Window\Page\UsersPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="window\StampWindow.xaml">
+    <Page Update="Window\StampWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Window\UserAddWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

@@ -13,14 +13,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using TimeCard.info;
+using TimeCard.Info;
+using TimeCard.Controller;
 
-namespace TimeCard.window
+namespace TimeCard.Window
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class StampWindow : Window
+    public partial class StampWindow : System.Windows.Window
     {
         private DispatcherTimer Timer;
         private UserInfo UserInfoData;
@@ -54,24 +55,28 @@ namespace TimeCard.window
         public void AttendButton_Click( object sender, RoutedEventArgs e )
         {
             MessageBox.Show( this, DateTime.Now.ToString( "yyy/MM/dd ddd HH:mm:ss" ) + "\n" + UserInfoData.UserNo + " : " + UserInfoData.Name + "\n[ 出 ] 打刻しました" );
+            StampController.Attend( UserInfoData );
             Application.Current.Shutdown();
         }
 
         private void BreakButton_Click( object sender, RoutedEventArgs e )
         {
             MessageBox.Show( this, DateTime.Now.ToString( "yyy/MM/dd ddd HH:mm:ss") + "\n" + UserInfoData.UserNo + " : " + UserInfoData.Name + "\n[ 外 ] 打刻しました");
+            StampController.Break( UserInfoData );
             Application.Current.Shutdown();
         }
 
         private void BreakEndButton_Click( object sender, RoutedEventArgs e )
         {
             MessageBox.Show( this, DateTime.Now.ToString( "yyy/MM/dd ddd HH:mm:ss") + "\n" + UserInfoData.UserNo + " : " + UserInfoData.Name + "\n[ 戻 ] 打刻しました");
+            StampController.BreakEnd( UserInfoData );
             Application.Current.Shutdown();
         }
 
         private void LeavingButton_Click( object sender, RoutedEventArgs e )
         {
             MessageBox.Show( this, DateTime.Now.ToString( "yyy/MM/dd ddd HH:mm:ss") + "\n" + UserInfoData.UserNo + " : " + UserInfoData.Name + "\n[ 退 ] 打刻しました" );
+            StampController.Leaving( UserInfoData );
             Application.Current.Shutdown();
         }
     }

@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 
 #pragma warning disable SYSLIB0021
 
-namespace TimeCard.utility
+namespace TimeCard.Utility
 {
     internal class Sha256
     {

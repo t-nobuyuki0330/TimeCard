@@ -11,21 +11,23 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using TimeCard.info;
-using TimeCard.window.page;
+using TimeCard.Info;
+using TimeCard.Window.Page;
 // using System.Windows.Navigation;
 
-namespace TimeCard.window
+namespace TimeCard.Window
 {
     /// <summary>
     /// AdminWindow.xaml の相互作用ロジック
     /// </summary>
-    public partial class AdminWindow : Window
+    public partial class AdminWindow : System.Windows.Window
     {
         private const string PageDirUri = "/window/page";
         private Uri AdminPageUri = new Uri( PageDirUri + "/AdminPage.xaml", UriKind.Relative );
         private Uri UsersPageUri = new Uri( PageDirUri + "/UsersPage.xaml", UriKind.Relative );
         private Uri StampPageUri = new Uri( PageDirUri + "/StampManagePage.xaml", UriKind.Relative );
+
+        public List< UserInfo > UsersList;
 
         public AdminWindow( UserInfo user_info )
         {

@@ -13,12 +13,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TimeCard.window.page
+namespace TimeCard.Window.Page
 {
     /// <summary>
     /// AdminPage.xaml の相互作用ロジック
     /// </summary>
-    public partial class AdminPage : Page
+    public partial class AdminPage : System.Windows.Controls.Page
     {
         public AdminPage()
         {

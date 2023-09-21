@@ -13,12 +13,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TimeCard.window.page
+namespace TimeCard.Window.Page
 {
     /// <summary>
     /// StampManagePage.xaml の相互作用ロジック
     /// </summary>
-    public partial class StampManagePage : Page
+    public partial class StampManagePage : System.Windows.Controls.Page
     {
         public StampManagePage()
         {
