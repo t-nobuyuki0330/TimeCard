@@ -11,7 +11,7 @@ namespace TimeCard.Info
     {
         public static string AdminInfo  = FileUtility.GetAppDataPath() + "\\info\\admin_info.dat";
         public static string UsersInfo  = FileUtility.GetAppDataPath() + "\\info\\users_info.dat";
-        public static string StampInfo  = FileUtility.GetAppDataPath() + "\\info\\stamp_info.dat";
+        public static string StampInfo  = FileUtility.GetAppDataPath() + "\\info\\stamp_info_";
         public static string CsvDir     = FileUtility.GetAppDataPath() + "\\csv";
     }
 }

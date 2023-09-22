@@ -51,7 +51,7 @@ namespace TimeCard.Controller
         public static StampInfo LoadStampData( UserInfo user )
         {
             List< StampInfo > stamp_list;
-            if ( File.Exists( InfoUri.StampInfo ) )
+            if ( File.Exists( CreateDatFileName() ) )
             {
                 var tmp = FileUtility.LoadBinaryFile ( InfoUri.StampInfo );
                 if ( tmp.file_data is List< StampInfo > )
@@ -75,7 +75,7 @@ namespace TimeCard.Controller
         public static void SaveStampData( StampInfo stamp )
         {
             List< StampInfo > stamp_list;
-            if ( File.Exists( InfoUri.StampInfo ) )
+            if ( File.Exists( CreateDatFileName() ) )
             {
                 var tmp = FileUtility.LoadBinaryFile ( InfoUri.StampInfo );
                 if ( tmp.file_data is List< StampInfo > )
@@ -104,7 +104,31 @@ namespace TimeCard.Controller
             }
 
             stamp_list.Add( stamp );
-            FileUtility.SaveBinaryFile( stamp_list, InfoUri.StampInfo );
+            FileUtility.SaveBinaryFile( stamp_list, CreateDatFileName() );
+        }
+
+        public static string CreateDatFileName()
+        {
+            return InfoUri.StampInfo + DateTime.Now.ToString( "yyyyMM" ) + ".dat";
+        }
+
+        public static ( int index, StampInfo stamp_info ) SearchIndex( StampInfo stamp, DateTime date )
+        {
+            int index = 0;
+
+
+            foreach ( DateInfo tmp in stamp.Stamp )
+            {
+                if ( tmp.Date.ToString( "yyyy/MM/dd" ).Equals( date.ToString( "yyyy/MM/dd" ) ) )
+                {
+                    return ( index, stamp );
+                }
+                index++;
+            }
+
+            stamp.Stamp.Add( new DateInfo( date ) );
+
+            return ( index, stamp );
         }
 
         public static void Attend ( UserInfo user )
@@ -113,7 +137,9 @@ namespace TimeCard.Controller
             StampInfo stamp = LoadStampData( user );
             if ( stamp == null ) stamp = new StampInfo( user );
 
-            stamp.Attend.Add ( dt.ToString( "yyyy/MM/dd-HH:mm:ss" ) );
+            var serach = SearchIndex( stamp, dt );
+            stamp = serach.stamp_info;
+            stamp.Stamp[ serach.index ].Attend = dt;
 
             SaveStampData( stamp );
         }
@@ -124,7 +150,9 @@ namespace TimeCard.Controller
             StampInfo stamp = LoadStampData( user );
             if ( stamp == null ) stamp = new StampInfo( user );
 
-            stamp.Break.Add ( dt.ToString( "yyyy/MM/dd-HH:mm:ss" ) );
+            var serach = SearchIndex( stamp, dt );
+            stamp = serach.stamp_info;
+            stamp.Stamp[ serach.index ].Break = dt;
 
             SaveStampData( stamp );
         }
@@ -135,7 +163,9 @@ namespace TimeCard.Controller
             StampInfo stamp = LoadStampData( user );
             if ( stamp == null ) stamp = new StampInfo( user );
 
-            stamp.BreakEnd.Add ( dt.ToString( "yyyy/MM/dd-HH:mm:ss" ) );
+            var serach = SearchIndex( stamp, dt );
+            stamp = serach.stamp_info;
+            stamp.Stamp[ serach.index ].BreakEnd = dt;
 
             SaveStampData( stamp );
         }
@@ -146,7 +176,9 @@ namespace TimeCard.Controller
             StampInfo stamp = LoadStampData( user );
             if ( stamp == null ) stamp = new StampInfo( user );
 
-            stamp.Leaving.Add ( dt.ToString( "yyyy/MM/dd-HH:mm:ss" ) );
+            var serach = SearchIndex( stamp, dt );
+            stamp = serach.stamp_info;
+            stamp.Stamp[ serach.index ].Leaving = dt;
 
             SaveStampData( stamp );
         }

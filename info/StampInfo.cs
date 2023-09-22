@@ -11,18 +11,12 @@ namespace TimeCard.Info
     public class StampInfo
     {
         public UserInfo User { get; set; }
-        public List< string > Attend { get; set; }
-        public List< string > Break { get; set; }
-        public List< string > BreakEnd { get; set; }
-        public List< string > Leaving { get; set; }
+        public List< DateInfo > Stamp { get; set; }
 
         public StampInfo( UserInfo user )
         {
             User = user;
-            Attend = new List< string >();
-            Break = new List< string >();
-            BreakEnd = new List< string >();
-            Leaving = new List< string >();
+            Stamp = new List< DateInfo >();
         }
 
     }

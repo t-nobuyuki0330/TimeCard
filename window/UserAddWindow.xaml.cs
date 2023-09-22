@@ -22,6 +22,10 @@ namespace TimeCard.Window
     /// </summary>
     public partial class UserAddWindow : System.Windows.Window
     {
+
+        public delegate void AddUserEvent< UserInfo >( UserInfo args );
+        public event AddUserEvent< UserInfo > AddUserEventHandler;
+
         public UserAddWindow()
         {
             InitializeComponent();
@@ -71,8 +75,12 @@ namespace TimeCard.Window
                 MessageBox.Show( this, result.message );
                 return;
             }
-
+            
             MessageBox.Show( this, user_info.UserNo + "\n" + user_info.Name + "\n登録完了しました" );
+            if ( AddUserEventHandler != null )
+            {
+                AddUserEventHandler( user_info );
+            }
             this.Close();
         }
     }

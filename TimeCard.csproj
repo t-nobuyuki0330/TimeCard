@@ -6,8 +6,8 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <Authors>Nobuyuki Tabuchi</Authors>
-    <Company>nem-lab</Company>
-    <Product>nem-lab $(AssemblyName)</Product>
+    <Company>NemLab</Company>
+    <Product>NemLab $(AssemblyName)</Product>
     <Description>作業時間記録のためのタイムカードシステム</Description>
     <NeutralLanguage>ja-JP</NeutralLanguage>
     <Version>1.0.0-beta</Version>

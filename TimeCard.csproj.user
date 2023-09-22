@@ -12,6 +12,9 @@
     <Compile Update="Window\AdminWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Window\Control\UserManageControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Window\LoginWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -30,6 +33,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Window\AdminWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Window\Control\UserManageControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Window\LoginWindow.xaml">

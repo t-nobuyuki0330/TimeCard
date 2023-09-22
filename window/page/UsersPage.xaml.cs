@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using TimeCard.Info;
 using TimeCard.Utility;
 using TimeCard.Window;
+using System.Collections.ObjectModel;
 
 namespace TimeCard.Window.Page
 {
@@ -24,13 +25,14 @@ namespace TimeCard.Window.Page
     /// </summary>
     public partial class UsersPage : System.Windows.Controls.Page
     {
-        private List< UserInfo > UsersList;
+        private ObservableCollection< UserInfo > UsersList;
 
         public UsersPage()
         {
             InitializeComponent();
             UpdateUsersInfo();
-
+            UserManage.AddButtonEvent += add_click;
+            UserManage.EventButtonEvent += edit_click;
         }
 
         public void UpdateUsersInfo()
@@ -43,7 +45,7 @@ namespace TimeCard.Window.Page
             var users_data = FileUtility.LoadBinaryFile( InfoUri.UsersInfo );
             if ( users_data.file_data is List< UserInfo > )
             {
-                UsersList = ( List< UserInfo > )users_data.file_data;
+                UsersList = new ObservableCollection< UserInfo >( ( List< UserInfo > )users_data.file_data );
             }
             else
             {
@@ -52,16 +54,22 @@ namespace TimeCard.Window.Page
             }
 
             UsersData.ItemsSource = UsersList;
-            
         }
 
-        public void add_click( object sender, RoutedEventArgs e )
+        public void AddUpdate( UserInfo add_user )
+        {
+            UsersList.Add ( add_user );
+        }
+
+        public void add_click( object sender, EventArgs e )
         {
             UserAddWindow user_add_window = new UserAddWindow();
+            user_add_window.AddUserEventHandler += AddUpdate;
             user_add_window.ShowDialog();
+            user_add_window.AddUserEventHandler -= AddUpdate;
         }
 
-        public void edit_click( object sender, RoutedEventArgs e )
+        public void edit_click( object sender, EventArgs e )
         {
             UserAddWindow user_add_window = new UserAddWindow();
             user_add_window.ShowDialog();
