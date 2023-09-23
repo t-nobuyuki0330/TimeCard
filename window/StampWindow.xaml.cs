@@ -31,6 +31,8 @@ namespace TimeCard.Window
         {
             InitializeComponent();
 
+            this.StateChanged += new EventHandler( WindowStateChanged );
+
             UserInfoData = user_info;
 
             UserNoLabel.Text = UserInfoData.Name;
@@ -53,10 +55,25 @@ namespace TimeCard.Window
             Timer.Start();
         }
 
+        public void WindowStateChanged( object sender, EventArgs e )
+        {
+            if ( this.WindowState == WindowState.Minimized )
+            {
+                Timer.Stop();
+                Timer = null;
+            }
+
+            if ( this.WindowState == WindowState.Normal )
+            {
+                Timer = CreateTimer();
+                Timer.Start();
+            }
+        }
+
         private DispatcherTimer CreateTimer() {
-            var timer = new DispatcherTimer( DispatcherPriority.Normal );
+            var timer = new DispatcherTimer( DispatcherPriority.Background );
             // 100ミリでインターバル
-            timer.Interval = TimeSpan.FromMilliseconds( 100 );
+            timer.Interval = TimeSpan.FromMilliseconds( 300 );
 
             timer.Tick += ( sender, e ) => {
                 TimeView.Text = DateTime.Now.ToString( "MM/dd [dddd] HH:mm:ss" );
