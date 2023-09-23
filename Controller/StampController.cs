@@ -53,7 +53,7 @@ namespace TimeCard.Controller
             List< StampInfo > stamp_list;
             if ( File.Exists( CreateDatFileName() ) )
             {
-                var tmp = FileUtility.LoadBinaryFile ( InfoUri.StampInfo );
+                var tmp = FileUtility.LoadBinaryFile ( CreateDatFileName() );
                 if ( tmp.file_data is List< StampInfo > )
                 {
                     stamp_list = ( List< StampInfo > )tmp.file_data;
@@ -75,9 +75,10 @@ namespace TimeCard.Controller
         public static void SaveStampData( StampInfo stamp )
         {
             List< StampInfo > stamp_list;
+            string stamp_uri = CreateDatFileName();
             if ( File.Exists( CreateDatFileName() ) )
             {
-                var tmp = FileUtility.LoadBinaryFile ( InfoUri.StampInfo );
+                var tmp = FileUtility.LoadBinaryFile ( stamp_uri );
                 if ( tmp.file_data is List< StampInfo > )
                 {
                     stamp_list = ( List< StampInfo >)tmp.file_data;
@@ -98,7 +99,7 @@ namespace TimeCard.Controller
                 if ( stamp_list[ i ].User.UserNo.Equals( stamp.User.UserNo ) )
                 {
                     stamp_list[ i ] = stamp;
-                    FileUtility.SaveBinaryFile( stamp_list, InfoUri.StampInfo );
+                    FileUtility.SaveBinaryFile( stamp_list, stamp_uri );
                     return;
                 }
             }
@@ -181,6 +182,50 @@ namespace TimeCard.Controller
             stamp.Stamp[ serach.index ].Leaving = dt;
 
             SaveStampData( stamp );
+        }
+
+        public static string GetStatus ( UserInfo user )
+        {
+            string status = "[ 退勤 ]";
+            StampInfo stamp = LoadStampData( user );
+            if ( stamp == null ) return status;
+
+            DateInfo new_info = stamp.Stamp[ 0 ];
+
+            foreach ( DateInfo item in stamp.Stamp )
+            {
+                new_info = ( new_info.Date <= item.Date )? item : new_info;
+            }
+
+            DateTime new_time = new_info.Attend;
+            for (int i = 0; i < 4; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        if ( new DateTime() < new_info.Attend ) status = "[ 出勤 ]";
+                        break;
+                    case 1:
+                        if ( new_time < new_info.Break )
+                        {
+                            status = "[ 休憩 ]";
+                            new_time = new_info.Break;
+                        }
+                        break;
+                    case 2:
+                        if ( new_time < new_info.BreakEnd )
+                        {
+                            status = "[ 出勤 ]";
+                            new_time = new_info.BreakEnd;
+                        }
+                        break;
+                    case 3:
+                        if ( new_time < new_info.Leaving || new_time == new DateTime() ) status = "[ 退勤 ]";
+                        break;
+                }
+            }
+            
+            return status;
         }
 
     }

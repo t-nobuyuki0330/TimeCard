@@ -25,6 +25,7 @@ namespace TimeCard.Window
     {
         private DispatcherTimer Timer;
         private UserInfo UserInfoData;
+        string Status = "[ 退勤 ]";
 
         public StampWindow( UserInfo user_info )
         {
@@ -33,6 +34,18 @@ namespace TimeCard.Window
             UserInfoData = user_info;
 
             UserNoLabel.Text = UserInfoData.Name;
+
+            Status = StampController.GetStatus( user_info );
+            if ( Status.Equals( "[ 出勤 ]" ) )
+            {
+                StatusLabel.Foreground = new SolidColorBrush( Colors.Blue );
+            }
+            else
+            {
+                StatusLabel.Foreground = new SolidColorBrush( Colors.Red );
+            }
+
+            StatusLabel.Text = Status;
 
             // タイマー生成処理
             Timer = CreateTimer();
@@ -56,28 +69,38 @@ namespace TimeCard.Window
         {
             MessageBox.Show( this, DateTime.Now.ToString( "yyy/MM/dd ddd HH:mm:ss" ) + "\n" + UserInfoData.UserNo + " : " + UserInfoData.Name + "\n[ 出 ] 打刻しました" );
             StampController.Attend( UserInfoData );
-            Application.Current.Shutdown();
+            StatusLabel.Text = "[ 出勤 ]";
+            StatusLabel.Foreground = new SolidColorBrush( Colors.Blue );
+            //Application.Current.Shutdown();
         }
 
         private void BreakButton_Click( object sender, RoutedEventArgs e )
         {
-            MessageBox.Show( this, DateTime.Now.ToString( "yyy/MM/dd ddd HH:mm:ss") + "\n" + UserInfoData.UserNo + " : " + UserInfoData.Name + "\n[ 外 ] 打刻しました");
+            MessageBox.Show( this, DateTime.Now.ToString( "yyy/MM/dd ddd HH:mm:ss") + "\n" + UserInfoData.UserNo + " : " + UserInfoData.Name + "\n[ 休 ] 打刻しました");
             StampController.Break( UserInfoData );
-            Application.Current.Shutdown();
+            StatusLabel.Text = "[ 休憩 ]";
+            StatusLabel.Foreground = new SolidColorBrush( Colors.Red );
+
+            //Application.Current.Shutdown();
         }
 
         private void BreakEndButton_Click( object sender, RoutedEventArgs e )
         {
             MessageBox.Show( this, DateTime.Now.ToString( "yyy/MM/dd ddd HH:mm:ss") + "\n" + UserInfoData.UserNo + " : " + UserInfoData.Name + "\n[ 戻 ] 打刻しました");
             StampController.BreakEnd( UserInfoData );
-            Application.Current.Shutdown();
+            StatusLabel.Text = "[ 出勤 ]";
+            StatusLabel.Foreground = new SolidColorBrush( Colors.Blue );
+            //Application.Current.Shutdown();
         }
 
         private void LeavingButton_Click( object sender, RoutedEventArgs e )
         {
             MessageBox.Show( this, DateTime.Now.ToString( "yyy/MM/dd ddd HH:mm:ss") + "\n" + UserInfoData.UserNo + " : " + UserInfoData.Name + "\n[ 退 ] 打刻しました" );
             StampController.Leaving( UserInfoData );
-            Application.Current.Shutdown();
+            StatusLabel.Text = "[ 退勤 ]";
+            StatusLabel.Foreground = new SolidColorBrush( Colors.Red );
+
+            //Application.Current.Shutdown();
         }
     }
 }
