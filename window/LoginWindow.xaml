@@ -1,9 +1,9 @@
-﻿<Window x:Name="LoginWindow1" x:Class="TimeCard.window.LoginWindow"
+﻿<Window x:Name="TC_LoginWindow" x:Class="TimeCard.Window.LoginWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TimeCard.window"
+        xmlns:local="clr-namespace:TimeCard.Window"
         mc:Ignorable="d"
         Title="TimeCard" Height="200" Width="300" WindowStyle="SingleBorderWindow" MinWidth="300" MinHeight="200" MaxWidth="300" MaxHeight="200">
     <Grid x:Name="LoginWindowGrid" Width="300" Height="180" HorizontalAlignment="Center">

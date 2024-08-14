@@ -1,21 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup />
+  <PropertyGroup>
+    <_LastSelectedProfileId>C:\Users\nobuyuki\program\timecard\TimeCard\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
+  </PropertyGroup>
   <ItemGroup>
     <ApplicationDefinition Update="App.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="window\LoginWindow.xaml.cs">
+    <Compile Update="Window\AdminWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Window\Control\UserManageControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Window\LoginWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Window\Page\AdminPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Window\Page\StampManagePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Window\Page\UsersPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Window\UserAddWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="window\LoginWindow.xaml">
+    <Page Update="Window\AdminWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="window\MainWindow.xaml">
+    <Page Update="Window\Control\UserManageControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Window\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Window\Page\AdminPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Window\Page\StampManagePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Window\Page\UsersPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Window\StampWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Window\UserAddWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

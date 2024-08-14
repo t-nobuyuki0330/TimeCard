@@ -1,0 +1,20 @@
+﻿<Window x:Name="TC_AdminWindow" x:Class="TimeCard.Window.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TimeCard.Window"
+        mc:Ignorable="d"
+        Title="TimeCard" Height="450" Width="800" MaxWidth="800" MaxHeight="450" MinWidth="800" MinHeight="450">
+    <Grid>
+        <Frame x:Name="AdminWindowFrame" Content="Frame" Margin="152,0,0,0" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Width="648" Height="434"/>
+        <StackPanel Margin="0,0,650,0">
+            <ListView x:Name="SelectMenu" Height="430" SelectionMode="Single" Foreground="Black" FontSize="20" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                <Button x:Name="AdminManageButton" Content="管理者" Width="120" Height="95" Background="White" Click="AdminManageButton_Click" BorderThickness="0,0,0,1"/>
+                <Button x:Name="UserManageButton" Content="ユーザー管理" Width="120" Height="95" Background="White" Click="UserManageButton_Click" BorderThickness="0,0,0,1"/>
+                <Button x:Name="StampManageButton" Content="出退勤管理" Width="120" Height="95" Background="White" Click="StampManageButton_Click" BorderThickness="0,0,0,1"/>
+                <Button x:Name="LoginWindowButton" Content="ログイン画面" Width="120" Height="95" Background="White" Click="LoginWindowButton_Click" BorderThickness="0,0,0,1"/>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Window>

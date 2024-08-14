@@ -1,21 +1,24 @@
-﻿<Window x:Name="StampingWindow" x:Class="TimeCard.window.MainWindow"
+﻿<Window x:Name="TC_StampingWindow" x:Class="TimeCard.Window.StampWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TimeCard.window"
+        xmlns:local="clr-namespace:TimeCard.Window"
         mc:Ignorable="d"
         Title="TimeCard" Height="470" Width="800" MinWidth="800" MinHeight="470" MaxWidth="800" MaxHeight="470">
     <Grid x:Name="StampingWindowGrid" Width="800" HorizontalAlignment="Center" Height="450" MinWidth="800" MinHeight="450" MaxWidth="800" MaxHeight="450">
-        <Viewbox Margin="22,24,408,354" Width="370" Height="60" HorizontalAlignment="Left">
+        <Viewbox Margin="22,30,0,360" Width="212" Height="60" HorizontalAlignment="Left">
             <TextBlock x:Name="UserNoLabel" TextWrapping="Wrap"><Run Language="ja-jp" Text="No.00000"/></TextBlock>
         </Viewbox>
         <Viewbox Margin="407,30,22,360" Width="370" Height="60">
             <TextBlock x:Name="TimeView" TextWrapping="Wrap"><Run Text="00/00"/><Run Text=" ["/><Run Language="ja-jp" Text="-"/><Run Text="曜日] 00:00:00"/></TextBlock>
         </Viewbox>
         <Button x:Name="AttendanceButton" Content="出勤" Margin="22,110,22,0" Height="60" VerticalAlignment="Top" FontSize="16" Click="AttendButton_Click"/>
-        <Button x:Name="BreakButton" Content="外出" Margin="22,190,22,0" Height="60" VerticalAlignment="Top" FontSize="16" Click="BreakButton_Click"/>
+        <Button x:Name="BreakButton" Content="休憩" Margin="22,190,22,0" Height="60" VerticalAlignment="Top" FontSize="16" Click="BreakButton_Click"/>
         <Button x:Name="BreakEndButton" Content="戻" Margin="22,270,22,0" Height="60" VerticalAlignment="Top" FontSize="16" Click="BreakEndButton_Click"/>
         <Button x:Name="LeavingButton" Content="退勤" Margin="22,350,22,0" Height="60" VerticalAlignment="Top" FontSize="16" Click="LeavingButton_Click"/>
+        <Viewbox Margin="241,30,0,360" Width="153" Height="60" HorizontalAlignment="Left">
+            <TextBlock x:Name="StatusLabel" TextWrapping="Wrap"><Run Language="ja-jp" Text="[状態]"/></TextBlock>
+        </Viewbox>
     </Grid>
 </Window>
